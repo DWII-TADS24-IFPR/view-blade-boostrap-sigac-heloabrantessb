@@ -9,5 +9,6 @@ class Turma extends Model
 {
     use SoftDeletes;
 
+    protected $table = 'turmas';
     protected $fillable = ['ano'];
 }

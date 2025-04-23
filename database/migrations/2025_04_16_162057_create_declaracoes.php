@@ -15,10 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('hash');
             $table->dateTime('data');
-            $table->unsignedBigInteger('aluno_id');
-            $table->foreign('aluno_id')->references('id')->on('alunos')->onDelete('cascade');
-            $table->unsignedBigInteger('comprovante_id');
-            $table->foreign('comprovante_id')->references('id')->on('comprovantes')->onDelete('cascade');
+            $table->foreignId('aluno_id')->constrained('alunos')->onDelete('cascade');
+            $table->foreignId('comprovante_id')->constrained('comprovantes')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -9,5 +9,6 @@ class Nivel extends Model
 {
     use SoftDeletes;
 
+    protected $table = 'niveis';
     protected $fillable = ['nome'];
 }

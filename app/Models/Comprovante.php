@@ -9,5 +9,6 @@ class Comprovante extends Model
 {
     use SoftDeletes;
 
+    protected $table = 'comprovantes';
     protected $fillable = ['horas', 'atividade'];
 }

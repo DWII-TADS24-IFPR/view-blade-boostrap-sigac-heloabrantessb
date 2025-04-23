@@ -9,5 +9,6 @@ class Declaracao extends Model
 {
     use SoftDeletes;
 
+    protected $table = 'declaracoes';
     protected $fillable = ['hash', 'data'];
 }

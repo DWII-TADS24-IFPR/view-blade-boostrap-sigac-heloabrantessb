@@ -16,11 +16,7 @@ return new class extends Migration
             $table->string('nome');
             $table->string('cpf');
             $table->string('email');
-            $table->string('senha');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('curso_id')->references('id')->on('cursos')->onDelete('cascade');
-            $table->unsignedBigInteger('turma_id');
-            $table->foreign('turma_id')->references('id')->on('turmas')->onDelete('cascade');
+            $table->string('telefone');
 
             $table->softDeletes();
             $table->timestamps();

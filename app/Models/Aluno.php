@@ -9,5 +9,10 @@ class Aluno extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['nome', 'cpf', 'email', 'senha'];
+    protected $table = 'alunos';
+    protected $fillable = ['nome', 'cpf', 'email', 'telefone'];
+
+    public function roles(){
+        return $this->belongsToMany(Role::class);
+    }
 }

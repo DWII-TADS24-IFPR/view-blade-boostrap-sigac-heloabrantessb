@@ -18,8 +18,7 @@ return new class extends Migration
             $table->string('status');
             $table->string('comentario');
             $table->float('horas_out');
-            $table->unsignedBigInteger('categoria_id');
-            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
+            $table->foreignId('categoria_id')->constrained('categorias')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });
