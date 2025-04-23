@@ -13,6 +13,6 @@ class Aluno extends Model
     protected $fillable = ['nome', 'cpf', 'email', 'telefone'];
 
     public function roles(){
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class)->withTimestamps();
     }
 }
