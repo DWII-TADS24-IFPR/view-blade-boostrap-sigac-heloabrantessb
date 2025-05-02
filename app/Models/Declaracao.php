@@ -11,4 +11,12 @@ class Declaracao extends Model
 
     protected $table = 'declaracoes';
     protected $fillable = ['hash', 'data'];
+
+    public function alunos(){
+        return $this->belongsTo(Aluno::class)->withTimestamps();
+    }
+
+    public function comprovantes(){
+        return $this->belongsTo(Comprovantes::class)->withTimestamps();
+    }
 }

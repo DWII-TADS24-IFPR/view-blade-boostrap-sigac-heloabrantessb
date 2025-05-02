@@ -11,4 +11,8 @@ class Documento extends Model
 
     protected $table = 'documentos';
     protected $fillable = ['url', 'horas_in', 'status', 'comentario', 'horas_out'];
+
+    public function categorias(){
+        return $this->belongsTo(Categoria::class)->withTimestamps();
+    }
 }

@@ -11,4 +11,24 @@ class Curso extends Model
 
     protected $table = 'cursos';
     protected $fillable = ['nome', 'sigla', 'total_horas'];
+
+    public function niveis(){
+        return $this->belongsTo(Nivel::class)->withTimestamps();
+    }
+    
+    public function eixos(){
+        return $this->belongsTo(Eixo::class)->withTimestamps();
+    }
+    
+    public function categorias(){
+        return $this->hasMany(Categoria::class)->withTimestamps();
+    }
+    
+    public function turmas(){
+        return $this->hasMany(Turma::class)->withTimestamps();
+    }
+
+    public function alunos(){
+        return $this->hasMany(Aluno::class)->withTimestamps();
+    }
 }

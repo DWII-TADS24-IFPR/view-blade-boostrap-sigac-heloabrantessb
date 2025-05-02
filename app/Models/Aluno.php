@@ -12,7 +12,19 @@ class Aluno extends Model
     protected $table = 'alunos';
     protected $fillable = ['nome', 'cpf', 'email', 'telefone'];
 
-    public function roles(){
-        return $this->belongsToMany(Role::class)->withTimestamps();
+    public function cursos(){
+        return $this->belongsTo(Curso::class)->withTimestamps();
+    }
+
+    public function turmas(){
+        return $this->belongsTo(Turma::class)->withTimestamps();
+    }
+    
+    public function alunos(){
+        return $this->hasMany(Aluno::class)->withTimestamps();
+    }
+    
+    public function declaracoes(){
+        return $this->hasMany(Declaracao::class)->withTimestamps();
     }
 }

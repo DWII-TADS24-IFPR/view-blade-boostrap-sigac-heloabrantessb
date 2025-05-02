@@ -11,4 +11,8 @@ class Nivel extends Model
 
     protected $table = 'niveis';
     protected $fillable = ['nome'];
+
+    public function categorias(){
+        return $this->hasMany(Curso::class)->withTimestamps();
+    }   
 }

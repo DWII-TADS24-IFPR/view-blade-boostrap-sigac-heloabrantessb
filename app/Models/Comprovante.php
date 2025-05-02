@@ -11,4 +11,17 @@ class Comprovante extends Model
 
     protected $table = 'comprovantes';
     protected $fillable = ['horas', 'atividade'];
+
+    public function categoria(){
+        return $this->belongsTo(Categoria::class);
+    }
+
+    public function aluno(){
+        return $this->belongsTo(Aluno::class);
+    }
+    
+    public function declaracoes(){
+        return $this->hasMany(Declaracoes::class);
+    }
+    
 }
