@@ -11,5 +11,13 @@
             <p>ID: {{ $nivel->id }}</p>
             <p>Nome: {{ $nivel->nome }}</p>
         </div>
+
+        <a href="{{ route('niveis.edit', $nivel->id) }}" class="btn btn-success">Editar</a>
+
+        <form action="{{ route('niveis.destroy', $nivel->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Excluir</button>
+        </form>
     </div>
 @endsection

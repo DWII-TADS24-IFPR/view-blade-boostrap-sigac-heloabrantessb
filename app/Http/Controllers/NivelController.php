@@ -34,21 +34,24 @@ class NivelController extends Controller
     public function show(string $id){
         $nivel = Nivel::findOrFail($id);
 
-        return view('niveis.show')->with('niveis', $nivel);
+        return view('niveis.show')->with('nivel', $nivel);
+    }
+
+    public function edit(string $id){
+        $nivel = Nivel::findOrFail($id);
+
+        return view('niveis.edit')->with('nivel', $nivel);
     }
 
     public function update(Request $request, string $id){
-        $nivel = Nivel::find($id);
+        $nivel = Nivel::findOrFail($id);
 
         //adicionar validação caso o nivel nao exista
-        if(isset($nivel)){
             $nivel->nome = $request->nome;
 
             $nivel->save();
 
             return redirect()->route('niveis.index');
-        }
-        return '<h1>Não foi possivel atualizar a informação</h1>';
     }
 
     public function destroy(string $id){
