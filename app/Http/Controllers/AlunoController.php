@@ -12,7 +12,7 @@ class AlunoController extends Controller
     {
         $alunos = Aluno::all();
 
-        return view('alunos.index')->('alunos', $alunos);
+        return view('alunos.index')->with('alunos', $alunos);
     }
 
     public function create()
@@ -22,61 +22,73 @@ class AlunoController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'cpf' => 'required|max:14',
-            'email' => 'required|max:255',
-            'telefone' => 'max:15'
+        $validated = $request->validate([
+        'nome' => 'required|string|max:255',
+        'cpf' => 'required|max:14',
+        'email' => 'required|max:255|email',
+        'telefone' => 'max:15',
+        'senha' => 'required|string|min:8',
+        'curso_id' => 'required|exists:cursos, id',
+        'turma_id' => 'required|exists:turmas, id',
         ]);
 
         Aluno::create([
-            'nome' => $request->input('nome'),
-            'cpf' => $request->input('cpf'),
-            'email' => $request->input('email'),
-            'telefone' => $request->input('telefone')
+            'nome' => $validated['nome'],
+            'cpf' => $validated['cpf'],
+            'email' => $validated['email'],
+            'telefone' => $validated['telefone'],
+            'senha' => $validated['telefone'],
         ]);
         
-        return redirect()->('alunos.index')->with('success', 'Aluno criado com sucesso!');
+        return redirect()->route('alunos.index')->with('success', 'Aluno criado com sucesso!');
     }
 
     public function show(string $id)
     {
-        $alunos = Aluno::find($id);
+        $aluno = Aluno::findOrFail($id);
 
-        return view('alunos.show')->with('alunos', $alunos);
+        return view('alunos.show')->with('aluno', $aluno);
     }
 
     public function edit(string $id)
     {
-       
+        $aluno = Aluno::findOrFail($id);
+
+        return view('alunos.edit')->with('aluno', $nivel);
     }
 
     public function update(Request $request, string $id)
     {
-         $aluno = Aluno::find($id);
+        $aluno = Aluno::findOrFail($id);
 
-        //adicionar validação caso o aluno nao exista
-        if(isset($aluno)){
-            $aluno->nome = $request->nome;
-            $aluno->cpf = $request->cpf;
-            $aluno->email = $request->email;
-            $aluno->telefone= $request->telefone;
+        $validated = $request->validate([
+        'nome' => 'required|string|max:255',
+        'cpf' => 'required|max:14',
+        'email' => 'required|max:255|email',
+        'telefone' => 'max:15',
+        'senha' => 'required|string|min:8',
+        'curso_id' => 'required|exists:cursos, id',
+        'turma_id' => 'required|exists:turmas, id',
+        ]);
 
-            $aluno->save();
 
-            return redirect()->route('alunos.index');
-        }
-        return '<h1>Não foi possivel atualizar a informação</h1>';
+        $aluno->nome = $validated['nome'];
+        $aluno->cpf = $validated['cpf'];
+        $aluno->email = $validated['email'];
+        $aluno->telefone= $validated['telefone'];
+
+        $aluno->save();
+
+        return redirect()->route('alunos.index')->with('success', 'Aluno atualizado com sucesso!');
     }
 
     public function destroy(string $id)
     {
-        $aluno = Aluno::find($id);
+            $aluno = Aluno::findOrFail($id);
         
-        if(isset($aluno)){
             $aluno->delete();
-            return '<h1>Registro deletado com sucesso!</h1>';
-        }
-        return '<h1>Não foi possivel deletar o registro!</h1>';
+
+            return redirect()->route('alunos.index');
     }
+    
 }

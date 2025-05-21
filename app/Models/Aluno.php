@@ -10,20 +10,15 @@ class Aluno extends Model
     use SoftDeletes;
 
     protected $table = 'alunos';
-    protected $fillable = ['nome', 'cpf', 'email', 'telefone'];
+    protected $fillable = ['nome', 'cpf', 'email', 'telefone', 'senha'];
 
     public function cursos(){
-        return $this->belongsTo(Curso::class)->withTimestamps();
+        return $this->belongsTo(Curso::class);
     }
 
     public function turmas(){
-        return $this->belongsTo(Turma::class)->withTimestamps();
+        return $this->belongsTo(Turma::class);
     }
-    
-    public function alunos(){
-        return $this->hasMany(Aluno::class)->withTimestamps();
-    }
-    
     public function declaracoes(){
         return $this->hasMany(Declaracao::class)->withTimestamps();
     }

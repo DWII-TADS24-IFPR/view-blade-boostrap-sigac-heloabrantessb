@@ -1,15 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Níveis')
+@section('title', 'SIGAC - Níveis')
 
 @section('content')
 
 <h1>Niveis</h1>
 
 <button class="btn btn-primary" onclick="window.location.href='{{route('niveis.create')}}'"> Adicionar Nivel</button>
-
-{{-- <a class="btn btn-primary" href='{{route('niveis.show', $nivel->id)}}'> Pesquisar Nivel</a> --}}
-{{-- <button class="btn btn-primary" onclick="window.location.href='{{route('niveis.update')}}'"> Editar Nivel</button> --}}
 
 <table class="table table-white">
     <thead>

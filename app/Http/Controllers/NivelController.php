@@ -16,17 +16,15 @@ class NivelController extends Controller
     }
 
     public function create(){
-        return view("niveis.create");
+        return view('niveis.create');
     }
 
     public function store(Request $request){
-        $request->validate([
+        $validated = $request->validate([
             'nome' => 'required|string|max:255'
         ]);  
 
-        Nivel::create([
-            'nome' => $request->input('nome')
-        ]);
+        Nivel::create($validated);
 
         return redirect()->route("niveis.index")->with('success', 'Nivel criado com sucesso!');
     }
@@ -45,13 +43,17 @@ class NivelController extends Controller
 
     public function update(Request $request, string $id){
         $nivel = Nivel::findOrFail($id);
+        
+        $validated = $request->validate([
+            'nome' => 'required|string|max:255'
+        ]);  
 
-        //adicionar validação caso o nivel nao exista
-            $nivel->nome = $request->nome;
 
-            $nivel->save();
+        $nivel->nome = $validated['nome'];
 
-            return redirect()->route('niveis.index');
+        $nivel->save();
+
+        return redirect()->route('niveis.index');
     }
 
     public function destroy(string $id){
