@@ -25,7 +25,9 @@ class CursoController extends Controller
         $validated = $request->validate([
             'nome' => 'required|string|max:255',
             'sigla' => 'required|string|min:2',
-            'total_horas' => 'required|integer'
+            'total_horas' => 'required|integer',
+            'nivel_id' => 'required|exists:niveis, id',
+            'eixo_id' => 'required|exists:eixos, id',
         ]);
 
         Curso::create($validated);

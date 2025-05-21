@@ -10,7 +10,7 @@ class Comprovante extends Model
     use SoftDeletes;
 
     protected $table = 'comprovantes';
-    protected $fillable = ['horas', 'atividade'];
+    protected $fillable = ['horas', 'atividade', 'categoria_id', 'aluno_id'];
 
     public function categoria(){
         return $this->belongsTo(Categoria::class);

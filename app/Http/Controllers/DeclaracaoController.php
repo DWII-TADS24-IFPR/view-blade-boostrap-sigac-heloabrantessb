@@ -24,7 +24,9 @@ class DeclaracaoController extends Controller
     {
         $validated = $request->validate([
             'hash' => 'required|string',
-            'data' => 'required|date'
+            'data' => 'required|date',
+            'aluno_id' => 'required|exists:alunos, id',
+            'comprovante_id' => 'required|exists:comprovantes, id'
         ]);
 
         Declaracao::create($validated);

@@ -10,7 +10,7 @@ class Aluno extends Model
     use SoftDeletes;
 
     protected $table = 'alunos';
-    protected $fillable = ['nome', 'cpf', 'email', 'telefone', 'senha'];
+    protected $fillable = ['nome', 'cpf', 'email', 'telefone', 'senha', 'curso_id', 'turma_id'];
 
     public function cursos(){
         return $this->belongsTo(Curso::class);

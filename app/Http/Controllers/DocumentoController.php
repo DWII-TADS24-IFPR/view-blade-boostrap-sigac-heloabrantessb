@@ -25,7 +25,8 @@ class DocumentoController extends Controller
             'horas_in' => 'required|double',
             'status' => 'required|string',
             'comentario' => 'string',
-            'horas_out' => 'required|double'
+            'horas_out' => 'required|double',
+            'categoria_id' => 'required|exists: categorias, id'
         ]);
 
         Documento::create($validated);

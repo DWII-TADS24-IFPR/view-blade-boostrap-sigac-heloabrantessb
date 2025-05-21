@@ -10,7 +10,7 @@ class Curso extends Model
     use SoftDeletes;
 
     protected $table = 'cursos';
-    protected $fillable = ['nome', 'sigla', 'total_horas'];
+    protected $fillable = ['nome', 'sigla', 'total_horas', 'nivel_id', 'eixo_id'];
 
     public function niveis(){
         return $this->belongsTo(Nivel::class)->withTimestamps();

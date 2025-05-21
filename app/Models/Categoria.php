@@ -10,7 +10,7 @@ class Categoria extends Model
     use SoftDeletes;
 
     protected $table = 'categorias';
-    protected $fillable = ['nome', 'maximo_horas']
+    protected $fillable = ['nome', 'maximo_horas', 'curso_id']
     
     public function cursos(){
         return $this->belongsTo(Curso::class)->withTimestamps();

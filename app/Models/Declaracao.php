@@ -10,7 +10,7 @@ class Declaracao extends Model
     use SoftDeletes;
 
     protected $table = 'declaracoes';
-    protected $fillable = ['hash', 'data'];
+    protected $fillable = ['hash', 'data', 'aluno_id', 'comprovante_id'];
 
     public function alunos(){
         return $this->belongsTo(Aluno::class)->withTimestamps();

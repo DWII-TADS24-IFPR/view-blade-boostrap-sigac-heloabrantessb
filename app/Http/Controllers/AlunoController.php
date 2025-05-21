@@ -37,7 +37,9 @@ class AlunoController extends Controller
             'cpf' => $validated['cpf'],
             'email' => $validated['email'],
             'telefone' => $validated['telefone'],
-            'senha' => $validated['telefone'],
+            'senha' => $validated['senha'],
+            'curso_id' =>$validated['curso_id'],
+            'turma_id' =>$validated['turma_id'],
         ]);
         
         return redirect()->route('alunos.index')->with('success', 'Aluno criado com sucesso!');
@@ -67,8 +69,6 @@ class AlunoController extends Controller
         'email' => 'required|max:255|email',
         'telefone' => 'max:15',
         'senha' => 'required|string|min:8',
-        'curso_id' => 'required|exists:cursos, id',
-        'turma_id' => 'required|exists:turmas, id',
         ]);
 
 

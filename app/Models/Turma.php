@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 namespace App\Models;
 
@@ -10,5 +10,5 @@ class Turma extends Model
     use SoftDeletes;
 
     protected $table = 'turmas';
-    protected $fillable = ['ano'];
+    protected $fillable = ['ano', 'curso_id'];
 }

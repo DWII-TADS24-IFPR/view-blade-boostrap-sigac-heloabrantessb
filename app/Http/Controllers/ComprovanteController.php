@@ -24,7 +24,9 @@ class ComprovanteController extends Controller
     {
         $validated = $request->validate([
             'horas' => 'required|integer',
-            'atividade' => 'required|string|max:255'
+            'atividade' => 'required|string|max:255',
+            'categoria_id' => 'required|exists:categorias, id',
+            'aluno_id' => 'required|exists:alunos, id'
         ]);
 
         Comprovante::create($validated);
